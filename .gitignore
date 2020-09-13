@@ -1,0 +1,8 @@
+
+AlexNet/Cifar-10/cifar-10-batches-py/data_batch_5
+
+AlexNet/data/*
+
+*.xml
+
+*.iml
