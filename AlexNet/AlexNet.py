@@ -100,8 +100,12 @@ def Accuracy():
         for data in testloader:
             images, labels = data
             images, labels = images.to(device), labels.to(device)  # 将输入和目标在每一步都送入GPU
+            # 将每张图片传入alexnet网络进行训练，返回一个10*1
+            # 这里可能是一次传入5张图片？一个batch的图片？我猜测
             outputs = net(images)
             _, pridected = torch.max(outputs.data, 1)  # 返回每一行中最大值的那个元素，且返回其索引
+
+            # 我们上面设置了batchsize=5,这里的labels.size(0)是等于5，total = 2000*5,这个数目和cifar10的测试集数目相同
             total += labels.size(0)
             correct += (pridected == labels).sum().item();
     print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
