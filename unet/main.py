@@ -73,7 +73,7 @@ def train(args):
     optimizer = optim.Adam(model.parameters())
 
     # 初始化
-    liver_dataset = LiverDataSet("data/train", transform=x_transforms, target_transform=y_transforms)
+    liver_dataset = LiverDataSet("/home/ming/code/u-net-liver-pytorch/data/train", transform=x_transforms, target_transform=y_transforms)
 
     # 读取数据集
     # 它为我们提供的常用操作有：batch_size(每个batch的大小),
@@ -87,7 +87,7 @@ def train(args):
 def test(args):
     model = Unet(3,1)
     model.load_state_dict(torch.load(args.ckpt,map_location='cpu'))
-    liver_dataset = LiverDataSet("data/val",transform = x_transforms,target_transform=y_transforms)
+    liver_dataset = LiverDataSet("/home/ming/code/u-net-liver-pytorch/data/val",transform = x_transforms,target_transform=y_transforms)
     dataloaders = DataLoader(liver_dataset,batch_size=1)
 
     #不启用 BatchNormalization 和 Dropout
